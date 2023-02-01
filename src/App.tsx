@@ -1,15 +1,11 @@
-import { useState } from 'react';
-import Button from '@mui/material/Button';
+import React from 'react';
 import './App.css';
+import Home from './pages/Home';
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
 		<div className="App">
-			<div>
-				<Button variant="contained">Hello World</Button>
-			</div>
+			<Home />
 		</div>
 	);
 }
