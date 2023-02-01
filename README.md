@@ -6,9 +6,9 @@ Create app with React and Typescript to:
 
   **Acceptance criteria**:
 
-        1- The table has 5 columns: name, type, release date, unit selector and price.
+        (ok) 1- The table has 5 columns: name, type, release date, unit selector and price.
 
-        2- The table is sorted by release date (most recent first).
+        (ok) 2- The table is sorted by release date (most recent first).
 
         3- The unit selector must be a number type input. The button + (add object) must be on the left side of the selector, and the button - (remove object), on the right side.
 
