@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TableComponent from '../components/TableComponent';
+import { TableDataInterface } from '../interfaces/TableData.interface';
 
 
 async function loadData(){
@@ -10,7 +11,7 @@ async function loadData(){
 
 
 const Home: React.FC = () => {
-	const [ data, setData ] = useState();
+	const [ data, setData ] = useState<TableDataInterface[]>();
 
 	useEffect(() => {
 		loadData().then((data) => {
@@ -27,7 +28,12 @@ const Home: React.FC = () => {
 	return (
 		<>
 			<h1> Sentisis Front-End Challenge by Héctor Matías González </h1>
-			<TableComponent tableData={data} />
+
+			{
+				data ? (<TableComponent tableData={data} />) : (<p>Loading...</p>)
+			}
+
+
 		</>
 	);
 };

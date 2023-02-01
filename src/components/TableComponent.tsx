@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { dateToDDMMYYYY } from '../common/dateParser';
+import { TableDataInterface } from '../interfaces/TableData.interface';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -30,9 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function TableComponent({ tableData }: any) {
-
-
+export default function TableComponent({ tableData }: { tableData: TableDataInterface[] }) {
 	return (
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -47,7 +46,7 @@ export default function TableComponent({ tableData }: any) {
 				</TableHead>
 				<TableBody>
 					{
-						tableData?.map(({ id, title, type, releaseDate, price, currency}: any) => (
+						tableData?.map(({ id, title, type, releaseDate, price, currency}: TableDataInterface) => (
 							<StyledTableRow key={id}>
 								<StyledTableCell component="th" scope="row">
 									{title}
