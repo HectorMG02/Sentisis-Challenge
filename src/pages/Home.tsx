@@ -14,8 +14,13 @@ const Home: React.FC = () => {
 
 	useEffect(() => {
 		loadData().then((data) => {
-			setData(data);
-			console.log(data);
+			const orderedData = data.sort((a: any, b: any) => {
+				const dateA = new Date(a.releaseDate);
+				const dateB = new Date(b.releaseDate);
+				return dateB.getTime() - dateA.getTime();
+			});
+
+			setData(orderedData);
 		});
 	}, []);
 

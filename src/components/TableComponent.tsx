@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { dateToDDMMYYYY } from '../common/dateParser';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -52,7 +53,11 @@ export default function TableComponent({ tableData }: any) {
 									{title}
 								</StyledTableCell>
 								<StyledTableCell align="left">{type}</StyledTableCell>
-								<StyledTableCell align="left">{releaseDate}</StyledTableCell>
+								<StyledTableCell align="left">
+									{
+										dateToDDMMYYYY(new Date(releaseDate))
+									}
+								</StyledTableCell>
 								<StyledTableCell align="left">{price}</StyledTableCell>
 								<StyledTableCell align="left">{currency}</StyledTableCell>
 							</StyledTableRow>
