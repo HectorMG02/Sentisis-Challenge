@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { dateToDDMMYYYY } from '../common/dateParser';
 import { TableDataInterface } from '../interfaces/TableData.interface';
+import propTypes from 'prop-types';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -67,3 +68,7 @@ export default function TableComponent({ tableData }: { tableData: TableDataInte
 		</TableContainer>
 	);
 }
+
+TableComponent.propTypes = {
+	tableData: propTypes.array.isRequired
+};

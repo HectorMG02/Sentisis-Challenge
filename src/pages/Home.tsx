@@ -22,6 +22,7 @@ const Home: React.FC = () => {
 			});
 
 			setData(orderedData);
+			console.log(orderedData);
 		});
 	}, []);
 
