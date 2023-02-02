@@ -11,6 +11,8 @@ import { dateToDDMMYYYY } from '../../common/dateParser';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
 import propTypes from 'prop-types';
 import UnitSelector from './UnitSelector';
+import { Button } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -33,7 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function TableComponent({ tableData, handleUnitChange }: { tableData: TableDataInterface[], handleUnitChange: (value: number, id: string) => void }) {
+export default function TableComponent({ tableData, handleUnitChange, selectData }: { tableData: TableDataInterface[], handleUnitChange: (value: number, id: string) => void, selectData: (id: string) => void }) {
 	return (
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -45,6 +47,7 @@ export default function TableComponent({ tableData, handleUnitChange }: { tableD
 						<StyledTableCell align="left">Unit Selector</StyledTableCell>
 						<StyledTableCell align="left">Price</StyledTableCell>
 						<StyledTableCell align="left">Currency</StyledTableCell>
+						<StyledTableCell align="left"></StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
@@ -65,6 +68,19 @@ export default function TableComponent({ tableData, handleUnitChange }: { tableD
 								</StyledTableCell>
 								<StyledTableCell align="left">{ price } </StyledTableCell>
 								<StyledTableCell align="left">{currency}</StyledTableCell>
+								<StyledTableCell align="left">
+									<Button
+										variant="contained"
+										color='primary'
+										startIcon={
+											<VisibilityIcon sx={{
+												ml: 1.5
+											}}
+											/>
+										}
+										onClick={() => selectData(id)}
+									/>
+								</StyledTableCell>
 							</StyledTableRow>
 						))
 					}

@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import propTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -11,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 	  alignItems: 'center'
 	},
 	input: {
-		width: 80,
+		width: 50,
 	},
 	icon: {
 		padding: 10,
@@ -34,7 +36,7 @@ function UnitSelector({ value, handleUnitChange, cellId } : { value: number, han
 						className={classes.icon}
 						onClick={() => handleUnitChange(value - 1, cellId)}
 					>
-						-
+						<RemoveIcon />
 					</IconButton>
 				</Grid>
 				<Grid item>
@@ -53,7 +55,7 @@ function UnitSelector({ value, handleUnitChange, cellId } : { value: number, han
 						className={classes.icon}
 						onClick={() => handleUnitChange(value + 1, cellId)}
 					>
-						+
+						<AddIcon />
 					</IconButton>
 				</Grid>
 			</Grid>

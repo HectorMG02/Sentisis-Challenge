@@ -20,9 +20,9 @@ Create app with React and Typescript to:
 
   **Acceptance criteria**:
 
-        1- The modal window shows the name, type and description.
+        (ok) 1- The modal window shows the name, type and description.
 
-        2- Besides the information, it must have an "Add" button, so that when clicking it, the modal closes and the unit selector of the list is increased in 1 unit.
+        (ok) 2- Besides the information, it must have an "Add" button, so that when clicking it, the modal closes and the unit selector of the list is increased in 1 unit.
 
 - When there is at least one unit of an object, a button "Cart" must be shown under the list.
 
