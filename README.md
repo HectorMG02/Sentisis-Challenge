@@ -2,7 +2,7 @@
 
 Create app with React and Typescript to:
 
-- Show a table with a list of objects (tickets/events).
+(ok) - Show a table with a list of objects (tickets/events).
 
   **Acceptance criteria**:
 
@@ -16,7 +16,7 @@ Create app with React and Typescript to:
 
         (ok) 5- When refreshing, the data are retained (the number of objects ordered is not reset).
 
-- Show a modal window when clicking each object row.
+(ok) - Show a modal window when clicking each object row.
 
   **Acceptance criteria**:
 
@@ -24,7 +24,7 @@ Create app with React and Typescript to:
 
         (ok) 2- Besides the information, it must have an "Add" button, so that when clicking it, the modal closes and the unit selector of the list is increased in 1 unit.
 
-- When there is at least one unit of an object, a button "Cart" must be shown under the list.
+ - When there is at least one unit of an object, a button "Cart" must be shown under the list.
 
   **Acceptance criteria**:
 
