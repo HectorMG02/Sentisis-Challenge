@@ -1,5 +1,4 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, List, Box, Avatar, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
-import React from 'react';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, List, ListItem, ListItemText } from '@mui/material';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
 
 const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, handleClose: () => void, data: TableDataInterface[]}) => {
