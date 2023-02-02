@@ -11,8 +11,9 @@ const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalU
 			open={open}
 			fullWidth
 			maxWidth="sm"
+			data-testid="modal"
 		>
-			<DialogTitle>
+			<DialogTitle data-testid="modal-title">
 				{data.title}
 				<span
 					style={{
@@ -20,12 +21,13 @@ const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalU
 						fontSize: '0.8rem',
 						fontWeight: 'bold',
 					}}
+					data-testid="modal-quantity"
 				>
                     (x {data.quantity})
 				</span>
 				<br/>
 				<Badge
-					data-testid="badge"
+					data-testid="modal-type"
 					badgeContent={data.type}
 					color="success"
 					sx={{
@@ -35,7 +37,9 @@ const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalU
 			</DialogTitle>
 			<DialogContent>
 
-				<DialogContentText id="alert-dialog-description">
+				<DialogContentText
+					data-testid="modal-description"
+				>
 					{data.description}
 				</DialogContentText>
 			</DialogContent>
@@ -44,6 +48,7 @@ const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalU
 				<Button
 					variant="contained"
 					color="warning"
+					data-testid="add-unit-button"
 					startIcon={<AddShoppingCartIcon />}
 					sx={{
 						float: 'right',
