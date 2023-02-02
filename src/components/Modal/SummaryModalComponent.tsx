@@ -1,6 +1,8 @@
 import { Dialog, DialogTitle, DialogContent, DialogContentText, List, ListItem, ListItemText, capitalize } from '@mui/material';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
 import { getCurrencyFormat } from '../../common/getCurrencyFormat';
+import { Fragment } from 'react';
+import { moneyParser } from '../../common/moneyParser';
 
 const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, handleClose: () => void, data: TableDataInterface[]}) => {
 	return (
@@ -13,7 +15,6 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 		>
 			<DialogTitle>
 				Summary
-				<hr />
 			</DialogTitle>
 			<DialogContent>
 				<DialogContentText id="alert-dialog-description">
@@ -21,17 +22,27 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 						{
 							data.map((item: TableDataInterface) => {
 								return (
-									<ListItem key={item.id}>
-										<ListItemText primary={capitalize(item.title)} secondary={`Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})`} />
-									</ListItem>
+									<Fragment key={item.id}>
+										<ListItem>
+											<ListItemText primary={capitalize(item.title)} secondary={`Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})`} />
+										</ListItem>
+										<hr />
+									</Fragment>
 								);
 							})
 						}
 
 						<ListItem>
-							<ListItemText primary="Total" secondary={`${data.reduce((acc: number, item: TableDataInterface) => {
-								return acc + (item.quantity * item.price);
-							}, 0)}${getCurrencyFormat(data[0].currency)}`}
+							<ListItemText primary={<span style={{
+								fontWeight: 'bold',
+							}}>Total</span>} secondary={<span style={{
+								fontWeight: 'bold',
+							}}>
+								{
+									moneyParser(data.reduce((acc: number, item: TableDataInterface) => {
+										return acc + (item.quantity * item.price);
+									}, 0))
+								}{getCurrencyFormat(data[0].currency)}</span>}
 							/>
 						</ListItem>
 					</List>
