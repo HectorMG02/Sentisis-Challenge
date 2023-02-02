@@ -24,19 +24,19 @@ Create app with React and Typescript to:
 
         (ok) 2- Besides the information, it must have an "Add" button, so that when clicking it, the modal closes and the unit selector of the list is increased in 1 unit.
 
- - When there is at least one unit of an object, a button "Cart" must be shown under the list.
+ (ok) - When there is at least one unit of an object, a button "Cart" must be shown under the list.
 
   **Acceptance criteria**:
 
-        1- Show another modal window with the summary of the objects ordered.
+        (ok) 1- Show another modal window with the summary of the objects ordered.
 
-        2- The summary must contain a list with the object name, number of units and total price.
+        (ok) 2- The summary must contain a list with the object name, number of units and total price.
 
-        3- The list is sorted from highest to lowest unit number.
+        (ok) 3- The list is sorted from highest to lowest unit number.
 
-        4- The total price must be shown at the end of the list.
+        (ok) 4- The total price must be shown at the end of the list.
 
-        5- To exit the modal, it is necessary to click outside the modal.
+        (ok) 5- To exit the modal, it is necessary to click outside the modal.
 
 - Finally: Add some unit tests and e2e tests to validate the whole process.
 

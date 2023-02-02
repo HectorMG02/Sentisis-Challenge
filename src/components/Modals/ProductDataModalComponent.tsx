@@ -3,10 +3,15 @@ import { TableDataInterface } from '../../interfaces/TableData.interface';
 import { Badge, Button, Dialog, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-const ModalComponent = ({ open, handleClose, data, handleSelectModalUnit}: { open: boolean, handleClose: () => void, data: TableDataInterface, handleSelectModalUnit: (id: string) => void}) => {
+const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalUnit}: { open: boolean, handleClose: () => void, data: TableDataInterface, handleSelectModalUnit: (id: string) => void}) => {
 
 	return (
-		<Dialog onClose={handleClose} open={open}>
+		<Dialog
+			onClose={handleClose}
+			open={open}
+			fullWidth
+			maxWidth="sm"
+		>
 			<DialogTitle>
 				{data.title}
 				<span
@@ -52,4 +57,4 @@ const ModalComponent = ({ open, handleClose, data, handleSelectModalUnit}: { ope
 	);
 };
 
-export default ModalComponent;
+export default ProductDataModalComponent;

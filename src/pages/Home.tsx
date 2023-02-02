@@ -4,8 +4,9 @@ import TableComponent from '../components/Table/TableComponent';
 import { RootState } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import * as dataActions from '../redux/actions/data.actions';
-import ModalComponent from '../components/Modal/ModalComponent';
+import ProductDataModalComponent from '../components/Modals/ProductDataModalComponent';
 import CartButton from '../components/CartButton';
+import SummaryModalComponent from '../components/Modals/SummaryModalComponent';
 
 async function getData(){
 	const url = 'https://my-json-server.typicode.com/davidan90/demo/tickets';
@@ -18,7 +19,8 @@ export default function Home() {
 	const dispatch = useDispatch();
 	const [data, setData] = useState<TableDataInterface[]>();
 	const [productSelected, setProductSelected] = useState<TableDataInterface>();
-	const [openProductInfoDialogue, setOpenProductInfoDialogue] = useState<boolean>(false);
+	const [openProductInfoModal, setOpenProductInfoModal] = useState<boolean>(false);
+	const [openSummaryModal, setOpenSummaryModal] = useState<boolean>(false);
 
 	const savedData = useSelector((state: RootState) => state.tableData.data);
 
@@ -44,7 +46,7 @@ export default function Home() {
 	const selectData = (id: string) => {
 		const product: TableDataInterface | undefined = data?.find((item: TableDataInterface) => item.id === id);
 		setProductSelected(product);
-		setOpenProductInfoDialogue(true);
+		setOpenProductInfoModal(true);
 	};
 
 	const handleSelectModalUnit = (id: string) => {
@@ -53,12 +55,17 @@ export default function Home() {
 		if(product){
 			const quantity: number = product?.quantity || 0;
 			handleUnitChange(quantity + 1, id);
-			setOpenProductInfoDialogue(false);
+			setOpenProductInfoModal(false);
 		}
 	};
 
 	const getProductsSelected = () => {
-		return data?.filter((item: TableDataInterface) => item?.quantity > 0) || [];
+		const productsSelected = data?.filter((item: TableDataInterface) => item?.quantity > 0) || [];
+		return productsSelected?.sort((a: TableDataInterface, b: TableDataInterface) => b.quantity - a.quantity);
+	};
+
+	const handleOpenSummaryModal = () => {
+		setOpenSummaryModal(true);
 	};
 
 	useEffect(() => {
@@ -77,11 +84,17 @@ export default function Home() {
 	return (
 		<>
 			<h1> Sentisis Front-End Challenge by Héctor Matías González </h1>
-
 			{
-				productSelected && (<ModalComponent open={openProductInfoDialogue} handleClose={() => setOpenProductInfoDialogue(false)} handleSelectModalUnit={handleSelectModalUnit} data={productSelected} />)
+				productSelected && (<ProductDataModalComponent open={openProductInfoModal} handleClose={() => setOpenProductInfoModal(false)} handleSelectModalUnit={handleSelectModalUnit} data={productSelected} />)
 			}
 
+			{
+				openSummaryModal && (<SummaryModalComponent
+					open={openSummaryModal}
+					handleClose={() => setOpenSummaryModal(false)}
+					data={getProductsSelected()}
+				/>)
+			}
 
 			{
 				data ? (<TableComponent tableData={data} handleUnitChange={handleUnitChange} selectData={selectData} /> ) : (<p>Loading...</p>)
@@ -89,7 +102,7 @@ export default function Home() {
 
 			{
 				getProductsSelected().length > 0 && (
-					<CartButton />
+					<CartButton onClick={handleOpenSummaryModal} />
 				)
 			}
 
