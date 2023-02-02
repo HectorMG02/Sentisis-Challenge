@@ -5,7 +5,7 @@ import { TableDataInterface } from '../../interfaces/TableData.interface';
 import { vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-describe('ProductDataModalComponent', () => {
+describe('ProductDataModalComponent tests', () => {
 	let component: ReturnType<typeof render>;
 	const handleSelectModalUnit = vi.fn();
 	const data: TableDataInterface = {
@@ -14,6 +14,9 @@ describe('ProductDataModalComponent', () => {
 		type: 'Test Type',
 		description: 'Test Description',
 		quantity: 2,
+		releaseDate: 123456789,
+		price: 100,
+		currency: 'euro'
 	};
 
 

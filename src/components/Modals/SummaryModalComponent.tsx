@@ -3,10 +3,10 @@ import React from 'react';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
 
 const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, handleClose: () => void, data: TableDataInterface[]}) => {
-	console.log({data});
 	return (
 		<Dialog
 			onClose={handleClose}
+			data-testid="modal"
 			open={open}
 			fullWidth
 			maxWidth="sm"
@@ -17,7 +17,7 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 			</DialogTitle>
 			<DialogContent>
 				<DialogContentText id="alert-dialog-description">
-					<List sx={{ mt: -2 }}>
+					<List sx={{ mt: -2 }} data-testid="modal-list">
 						{
 							data.map((item: TableDataInterface) => {
 								return (
