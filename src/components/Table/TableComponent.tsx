@@ -28,14 +28,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 	'&:nth-of-type(odd)': {
 		backgroundColor: theme.palette.action.hover,
 	},
-	// hide last border
 	'&:last-child td, &:last-child th': {
 		border: 0,
 	},
 }));
 
 
-export default function TableComponent({ tableData, handleUnitChange, selectData }: { tableData: TableDataInterface[], handleUnitChange: (value: number, id: string) => void, selectData: (id: string) => void }) {
+export default function TableComponent({ tableData, handleUnitChange, selectDataFunction }: { tableData: TableDataInterface[], handleUnitChange: (value: number, id: string) => void, selectDataFunction: (id: string) => void }) {
 	return (
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -78,7 +77,7 @@ export default function TableComponent({ tableData, handleUnitChange, selectData
 											}}
 											/>
 										}
-										onClick={() => selectData(id)}
+										onClick={() => selectDataFunction(id)}
 									/>
 								</StyledTableCell>
 							</StyledTableRow>

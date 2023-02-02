@@ -35,13 +35,14 @@ function UnitSelector({ value, handleUnitChange, cellId } : { value: number, han
 						aria-label="minus"
 						className={classes.icon}
 						onClick={() => handleUnitChange(value - 1, cellId)}
+						data-testid={`decrease-button-${cellId}`}
 					>
 						<RemoveIcon />
 					</IconButton>
 				</Grid>
 				<Grid item>
 					<TextField
-						id="standard-number"
+						data-testid={`unit-selector-${cellId}`}
 						type="number"
 						value={value}
 						className={classes.input}
@@ -54,6 +55,7 @@ function UnitSelector({ value, handleUnitChange, cellId } : { value: number, han
 						aria-label="plus"
 						className={classes.icon}
 						onClick={() => handleUnitChange(value + 1, cellId)}
+						data-testid={`increase-button-${cellId}`}
 					>
 						<AddIcon />
 					</IconButton>

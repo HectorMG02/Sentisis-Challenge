@@ -97,7 +97,7 @@ export default function Home() {
 			}
 
 			{
-				data ? (<TableComponent tableData={data} handleUnitChange={handleUnitChange} selectData={selectData} /> ) : (<p>Loading...</p>)
+				data ? (<TableComponent tableData={data} handleUnitChange={handleUnitChange} selectDataFunction={selectData} /> ) : (<p>Loading...</p>)
 			}
 
 			{

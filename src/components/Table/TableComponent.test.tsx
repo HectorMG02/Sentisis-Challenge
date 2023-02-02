@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import TableComponent from '../Table/TableComponent';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
 import { dateToDDMMYYYY } from '../../common/dateParser';
+import { vi } from 'vitest';
 
 const tableData: TableDataInterface[] = [
 	{
@@ -29,14 +30,14 @@ const tableData: TableDataInterface[] = [
 describe('TableComponent tests', () => {
 	describe('Layout', () => {
 		test('has the tableData property', () => {
-			const { container } = render(<TableComponent tableData={tableData} />);
+			const { container } = render(<TableComponent tableData={tableData} handleUnitChange={vi.fn()} selectDataFunction={vi.fn()} />);
 			const tableRows = container.querySelectorAll('tr');
 			expect(tableRows.length).toBe(tableData.length + 1); // +1 for the header
 
 		});
 
 		test('data has the correct format DD/MM/YYYY', () => {
-			const { container } = render(<TableComponent tableData={tableData} />);
+			const { container } = render(<TableComponent tableData={tableData} handleUnitChange={vi.fn()} selectDataFunction={vi.fn()} />);
 			const tableRows = container.querySelectorAll('tr');
 			const tableRow = tableRows[1];
 
