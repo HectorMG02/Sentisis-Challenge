@@ -5,7 +5,7 @@ import { RootState } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import * as dataActions from '../redux/actions/data.actions';
 
-async function loadData(){
+async function getData(){
 	const url = 'https://my-json-server.typicode.com/davidan90/demo/tickets';
 	const response = await fetch(url);
 	return await response.json();
@@ -17,6 +17,11 @@ export default function Home() {
 	const [ data, setData ] = useState<TableDataInterface[]>();
 
 	const savedData = useSelector((state: RootState) => state.tableData.data);
+
+
+	const loadData = (data: TableDataInterface[]) => {
+		setData(savedData ? savedData : data);
+	};
 
 	const handleUnitChange = (value: number, id: string) => {
 		if(value < 0) return;
@@ -30,11 +35,10 @@ export default function Home() {
 
 		setData(newData);
 		dispatch(dataActions.saveData(newData));
-		console.log({savedData});
 	};
 
 	useEffect(() => {
-		loadData().then((data) => {
+		getData().then((data) => {
 			const orderedData = data.sort((a: any, b: any) => {
 				const dateA = new Date(a.releaseDate);
 				const dateB = new Date(b.releaseDate);
@@ -42,8 +46,7 @@ export default function Home() {
 			});
 
 			orderedData.map((item: TableDataInterface) => item.quantity = 0);
-
-			setData(orderedData);
+			loadData(orderedData);
 		});
 	}, []);
 
