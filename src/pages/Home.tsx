@@ -5,6 +5,7 @@ import { RootState } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import * as dataActions from '../redux/actions/data.actions';
 import ModalComponent from '../components/Modal/ModalComponent';
+import CartButton from '../components/CartButton';
 
 async function getData(){
 	const url = 'https://my-json-server.typicode.com/davidan90/demo/tickets';
@@ -56,6 +57,10 @@ export default function Home() {
 		}
 	};
 
+	const getProductsSelected = () => {
+		return data?.filter((item: TableDataInterface) => item?.quantity > 0) || [];
+	};
+
 	useEffect(() => {
 		getData().then((data) => {
 			const orderedData = data.sort((a: any, b: any) => {
@@ -81,6 +86,13 @@ export default function Home() {
 			{
 				data ? (<TableComponent tableData={data} handleUnitChange={handleUnitChange} selectData={selectData} /> ) : (<p>Loading...</p>)
 			}
+
+			{
+				getProductsSelected().length > 0 && (
+					<CartButton />
+				)
+			}
+
 		</>
 	);
 }
