@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { TableDataInterface } from '../interfaces/TableData.interface';
 import TableComponent from '../components/Table/TableComponent';
-
+import { RootState } from '../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import * as dataActions from '../redux/actions/data.actions';
 
 async function loadData(){
 	const url = 'https://my-json-server.typicode.com/davidan90/demo/tickets';
@@ -11,20 +13,24 @@ async function loadData(){
 
 
 export default function Home() {
+	const dispatch = useDispatch();
 	const [ data, setData ] = useState<TableDataInterface[]>();
 
+	const savedData = useSelector((state: RootState) => state.tableData.data);
 
 	const handleUnitChange = (value: number, id: string) => {
 		if(value < 0) return;
 
 		const newData = data?.map((item: TableDataInterface) => {
 			if (item.id === id) {
-				item.unitSelector = value;
+				item.quantity = value;
 			}
 			return item;
 		});
 
 		setData(newData);
+		dispatch(dataActions.saveData(newData));
+		console.log({savedData});
 	};
 
 	useEffect(() => {
@@ -35,10 +41,9 @@ export default function Home() {
 				return dateB.getTime() - dateA.getTime();
 			});
 
-			orderedData.map((item: TableDataInterface) => item.unitSelector = 0);
+			orderedData.map((item: TableDataInterface) => item.quantity = 0);
 
 			setData(orderedData);
-			console.log(orderedData);
 		});
 	}, []);
 
@@ -52,4 +57,3 @@ export default function Home() {
 		</>
 	);
 }
-

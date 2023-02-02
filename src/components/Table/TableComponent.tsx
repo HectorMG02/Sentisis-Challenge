@@ -49,7 +49,7 @@ export default function TableComponent({ tableData, handleUnitChange }: { tableD
 				</TableHead>
 				<TableBody>
 					{
-						tableData?.map(({ id, title, type, releaseDate, unitSelector, price, currency}: TableDataInterface) => (
+						tableData?.map(({ id, title, type, releaseDate, quantity, price, currency}: TableDataInterface) => (
 							<StyledTableRow key={id}>
 								<StyledTableCell component="th" scope="row" align="left">
 									{title}
@@ -61,7 +61,7 @@ export default function TableComponent({ tableData, handleUnitChange }: { tableD
 									}
 								</StyledTableCell>
 								<StyledTableCell align="left">
-									<UnitSelector value={unitSelector || 0} handleUnitChange={handleUnitChange} cellId={id} />
+									<UnitSelector value={quantity || 0} handleUnitChange={handleUnitChange} cellId={id} />
 								</StyledTableCell>
 								<StyledTableCell align="left">{ price } </StyledTableCell>
 								<StyledTableCell align="left">{currency}</StyledTableCell>
