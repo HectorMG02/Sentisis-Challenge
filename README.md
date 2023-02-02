@@ -38,7 +38,7 @@ Create app with React and Typescript to:
 
         (ok) 5- To exit the modal, it is necessary to click outside the modal.
 
-- Finally: Add some unit tests and e2e tests to validate the whole process.
+(ok) - Finally: Add some unit tests and e2e tests to validate the whole process.
 
 > This is the data [endpoint](https://my-json-server.typicode.com/davidan90/demo/tickets).
 >
