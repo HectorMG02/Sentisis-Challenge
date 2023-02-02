@@ -13,6 +13,7 @@ import propTypes from 'prop-types';
 import UnitSelector from './UnitSelector';
 import { Button } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { getCurrencyFormat } from '../../common/getCurrencyFormat';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -45,7 +46,6 @@ export default function TableComponent({ tableData, handleUnitChange, selectData
 						<StyledTableCell align="left">Release Date</StyledTableCell>
 						<StyledTableCell align="left">Unit Selector</StyledTableCell>
 						<StyledTableCell align="left">Price</StyledTableCell>
-						<StyledTableCell align="left">Currency</StyledTableCell>
 						<StyledTableCell align="left"></StyledTableCell>
 					</TableRow>
 				</TableHead>
@@ -65,8 +65,7 @@ export default function TableComponent({ tableData, handleUnitChange, selectData
 								<StyledTableCell align="left">
 									<UnitSelector value={quantity || 0} handleUnitChange={handleUnitChange} cellId={id} />
 								</StyledTableCell>
-								<StyledTableCell align="left">{ price } </StyledTableCell>
-								<StyledTableCell align="left">{currency}</StyledTableCell>
+								<StyledTableCell align="left">{ price }{getCurrencyFormat(currency)}</StyledTableCell>
 								<StyledTableCell align="left">
 									<Button
 										variant="contained"

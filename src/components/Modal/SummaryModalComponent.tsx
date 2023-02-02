@@ -1,5 +1,6 @@
 import { Dialog, DialogTitle, DialogContent, DialogContentText, List, ListItem, ListItemText } from '@mui/material';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
+import { getCurrencyFormat } from '../../common/getCurrencyFormat';
 
 const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, handleClose: () => void, data: TableDataInterface[]}) => {
 	return (
@@ -21,7 +22,7 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 							data.map((item: TableDataInterface) => {
 								return (
 									<ListItem key={item.id}>
-										<ListItemText primary={item.title} secondary={`Units: ${item.quantity} (x${item.price} ${item.currency})`} />
+										<ListItemText primary={item.title} secondary={`Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})`} />
 									</ListItem>
 								);
 							})
@@ -30,7 +31,8 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 						<ListItem>
 							<ListItemText primary="Total" secondary={`${data.reduce((acc: number, item: TableDataInterface) => {
 								return acc + (item.quantity * item.price);
-							}, 0)} ${data[0].currency}`} />
+							}, 0)}${getCurrencyFormat(data[0].currency)}`}
+							/>
 						</ListItem>
 					</List>
 
