@@ -36,6 +36,7 @@ function UnitSelector({ value, handleUnitChange, cellId } : { value: number, han
 						className={classes.icon}
 						onClick={() => handleUnitChange(value - 1, cellId)}
 						data-testid={`decrease-button-${cellId}`}
+						disabled={value === 0}
 					>
 						<RemoveIcon />
 					</IconButton>

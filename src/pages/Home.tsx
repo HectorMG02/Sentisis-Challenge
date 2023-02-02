@@ -4,9 +4,9 @@ import TableComponent from '../components/Table/TableComponent';
 import { RootState } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import * as dataActions from '../redux/actions/data.actions';
-import ProductDataModalComponent from '../components/Modals/ProductDataModalComponent';
 import CartButton from '../components/CartButton';
-import SummaryModalComponent from '../components/Modals/SummaryModalComponent';
+import ProductDataModalComponent from '../components/Modal/ProductDataModalComponent';
+import SummaryModalComponent from '../components/Modal/SummaryModalComponent';
 
 async function getData(){
 	const url = 'https://my-json-server.typicode.com/davidan90/demo/tickets';
