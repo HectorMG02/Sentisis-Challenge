@@ -1,4 +1,4 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, List, ListItem, ListItemText } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, List, ListItem, ListItemText, capitalize } from '@mui/material';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
 import { getCurrencyFormat } from '../../common/getCurrencyFormat';
 
@@ -22,7 +22,7 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 							data.map((item: TableDataInterface) => {
 								return (
 									<ListItem key={item.id}>
-										<ListItemText primary={item.title} secondary={`Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})`} />
+										<ListItemText primary={capitalize(item.title)} secondary={`Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})`} />
 									</ListItem>
 								);
 							})

@@ -1,6 +1,6 @@
 import { getCurrencyFormat } from './getCurrencyFormat';
 
-describe('getCurrencyFormat tests', () => {
+describe('getCurrencyFormat function tests', () => {
 	test('if pass an existing key has to return the symbol', () => {
 		const result = getCurrencyFormat('euro');
 		expect(result).toBe('€');

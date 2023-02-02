@@ -11,14 +11,15 @@ import { dateToDDMMYYYY } from '../../common/dateParser';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
 import propTypes from 'prop-types';
 import UnitSelector from './UnitSelector';
-import { Button } from '@mui/material';
+import { Button, capitalize } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { getCurrencyFormat } from '../../common/getCurrencyFormat';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(() => ({
 	[`&.${tableCellClasses.head}`]: {
-		backgroundColor: theme.palette.common.black,
-		color: theme.palette.common.white,
+		backgroundColor: '#DC825D',
+		color: '#ffff',
+		fontWeight: 'bold',
 	},
 	[`&.${tableCellClasses.body}`]: {
 		fontSize: 14,
@@ -27,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
 	'&:nth-of-type(odd)': {
-		backgroundColor: theme.palette.action.hover,
+		backgroundColor: '#F4F5F9',
 	},
 	'&:last-child td, &:last-child th': {
 		border: 0,
@@ -53,10 +54,12 @@ export default function TableComponent({ tableData, handleUnitChange, selectData
 					{
 						tableData?.map(({ id, title, type, releaseDate, quantity, price, currency}: TableDataInterface) => (
 							<StyledTableRow key={id}>
-								<StyledTableCell component="th" scope="row" align="left">
-									{title}
+								<StyledTableCell component="th" scope="row" align="left" sx={{
+									fontWeight: 'bold',
+								}}>
+									{capitalize(title)}
 								</StyledTableCell>
-								<StyledTableCell align="left">{type}</StyledTableCell>
+								<StyledTableCell align="left">{capitalize(type)}</StyledTableCell>
 								<StyledTableCell align="left">
 									{
 										dateToDDMMYYYY(new Date(releaseDate))

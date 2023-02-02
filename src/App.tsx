@@ -1,27 +1,31 @@
 import React from 'react';
 import './App.css';
 import Home from './pages/Home';
-import { ThemeProvider, createTheme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 
-const theme = createTheme({
-	palette: {
-		primary: {
-			main: '#FDA47B',
-			contrastText: '#ffffff',
-		},
-		secondary: {
-			main: '#D9B5F6',
-			contrastText: '#ffffff',
-		},
-
-	}
-});
 
 const useStyles = makeStyles(() => ({
 	root: {
-		fontFamily: 'helvetica',
+		fontFamily: 'sans-serif',
+		'& .MuiButton-containedPrimary': {
+			backgroundColor: '#D9B5F6',
+			color: 'white',
+			'&:hover': {
+				backgroundColor: '#F4F5F9',
+				color: '#D9B5F6',
+			}
+		},
+		'& .MuiButton-containedSecondary': {
+			backgroundColor: '#FDA47B',
+			color: 'white',
+			'&:hover': {
+				backgroundColor: '#F4F5F9',
+				color: '#FDA47B',
+			}
+		},
 	},
+
 }));
 
 
@@ -29,11 +33,9 @@ function App() {
 	const classes = useStyles();
 
 	return (
-		<ThemeProvider theme={theme}>
-			<div className={classes.root}>
-				<Home />
-			</div>
-		</ThemeProvider>
+		<div className={classes.root}>
+			<Home />
+		</div>
 	);
 }
 

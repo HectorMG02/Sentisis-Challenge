@@ -1,6 +1,6 @@
 import React from 'react';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
-import { Badge, Button, Dialog, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { Badge, Button, Dialog, DialogContent, DialogContentText, DialogTitle, capitalize } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalUnit}: { open: boolean, handleClose: () => void, data: TableDataInterface, handleSelectModalUnit: (id: string) => void}) => {
@@ -14,7 +14,7 @@ const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalU
 			data-testid="modal"
 		>
 			<DialogTitle data-testid="modal-title">
-				{data.title}
+				{capitalize(data.title)}
 				<span
 					style={{
 						float: 'right',
@@ -28,7 +28,7 @@ const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalU
 				<br/>
 				<Badge
 					data-testid="modal-type"
-					badgeContent={data.type}
+					badgeContent={capitalize(data.type)}
 					color="success"
 					sx={{
 						ml: 2,
@@ -47,11 +47,17 @@ const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalU
 			<DialogContent>
 				<Button
 					variant="contained"
-					color="warning"
+					color="primary"
 					data-testid="add-unit-button"
 					startIcon={<AddShoppingCartIcon />}
 					sx={{
 						float: 'right',
+						backgroundColor: '#FDA47B',
+						color: 'white',
+						'&:hover': {
+							backgroundColor: '#F4F5F9',
+							color: '#FDA47B',
+						}
 					}}
 					onClick={() => handleSelectModalUnit(data.id)}
 				>
