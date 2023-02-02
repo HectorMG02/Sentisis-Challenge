@@ -14,7 +14,7 @@ Create app with React and Typescript to:
 
         (ok) 4- When hitting the unit selector buttons, the number of objects should get updated.
 
-        5- When refreshing, the data are retained (the number of objects ordered is not reset).
+        (ok) 5- When refreshing, the data are retained (the number of objects ordered is not reset).
 
 - Show a modal window when clicking each object row.
 
