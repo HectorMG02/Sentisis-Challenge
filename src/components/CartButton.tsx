@@ -7,6 +7,7 @@ const CartButton = ({ onClick }: { onClick: () => void}) => {
 			<Button
 				variant="contained"
 				color="primary"
+				data-testid="cart-button"
 				endIcon={<ShoppingCartCheckoutIcon />}
 				onClick={onClick}
 				sx={{
