@@ -48,19 +48,19 @@ describe('Table tests', () => {
 	});
 
 	it('if press view button the modal will be rendered', () => {
-		cy.get(':nth-child(1) > :nth-child(7) > .MuiButtonBase-root').click();
+		cy.get(':nth-child(1) > :nth-child(6) > .MuiButtonBase-root').click();
 		cy.get('[data-testid="modal"]').should('be.visible');
 	});
 
 	it('if press outside the modal this will be closed', () => {
-		cy.get(':nth-child(1) > :nth-child(7) > .MuiButtonBase-root').click();
+		cy.get(':nth-child(1) > :nth-child(6) > .MuiButtonBase-root').click();
 		cy.get('[data-testid="modal"]').should('be.visible');
 		cy.get('[data-testid="modal"]').click(0, 0);
 		cy.get('[data-testid="modal"]').should('not.exist');
 	});
 
 	it('if press add unit button into the modal then the unit value will be increased', () => {
-		cy.get(':nth-child(1) > :nth-child(7) > .MuiButtonBase-root').click();
+		cy.get(':nth-child(1) > :nth-child(6) > .MuiButtonBase-root').click();
 		cy.get('[data-testid="modal"]').should('be.visible');
 		cy.get('[data-testid="add-unit-button"]').click();
 		cy.get('[data-testid="unit-selector-7p"] > .MuiInputBase-root > .MuiInputBase-input').should('have.value', '1');

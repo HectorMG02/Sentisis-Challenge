@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite --port 3000",
     "test": "vitest --reporter verbose",
+    "cypress": "cypress run --browser chrome --spec 'cypress/'",
+    "open-cypress": "cypress open",
     "lint": "eslint .",
     "lint-fix": "eslint --fix ."
   },
