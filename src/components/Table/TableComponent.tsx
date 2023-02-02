@@ -7,9 +7,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { dateToDDMMYYYY } from '../common/dateParser';
-import { TableDataInterface } from '../interfaces/TableData.interface';
+import { dateToDDMMYYYY } from '../../common/dateParser';
+import { TableDataInterface } from '../../interfaces/TableData.interface';
 import propTypes from 'prop-types';
+import UnitSelector from './UnitSelector';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -32,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-export default function TableComponent({ tableData }: { tableData: TableDataInterface[] }) {
+export default function TableComponent({ tableData, handleUnitChange }: { tableData: TableDataInterface[], handleUnitChange: (value: number, id: string) => void }) {
 	return (
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -41,15 +42,16 @@ export default function TableComponent({ tableData }: { tableData: TableDataInte
 						<StyledTableCell align="left">Name</StyledTableCell>
 						<StyledTableCell align="left">Type</StyledTableCell>
 						<StyledTableCell align="left">Release Date</StyledTableCell>
+						<StyledTableCell align="left">Unit Selector</StyledTableCell>
 						<StyledTableCell align="left">Price</StyledTableCell>
 						<StyledTableCell align="left">Currency</StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{
-						tableData?.map(({ id, title, type, releaseDate, price, currency}: TableDataInterface) => (
+						tableData?.map(({ id, title, type, releaseDate, unitSelector, price, currency}: TableDataInterface) => (
 							<StyledTableRow key={id}>
-								<StyledTableCell component="th" scope="row">
+								<StyledTableCell component="th" scope="row" align="left">
 									{title}
 								</StyledTableCell>
 								<StyledTableCell align="left">{type}</StyledTableCell>
@@ -58,7 +60,10 @@ export default function TableComponent({ tableData }: { tableData: TableDataInte
 										dateToDDMMYYYY(new Date(releaseDate))
 									}
 								</StyledTableCell>
-								<StyledTableCell align="left">{price}</StyledTableCell>
+								<StyledTableCell align="left">
+									<UnitSelector value={unitSelector || 0} handleUnitChange={handleUnitChange} cellId={id} />
+								</StyledTableCell>
+								<StyledTableCell align="left">{ price } </StyledTableCell>
 								<StyledTableCell align="left">{currency}</StyledTableCell>
 							</StyledTableRow>
 						))
@@ -70,5 +75,6 @@ export default function TableComponent({ tableData }: { tableData: TableDataInte
 }
 
 TableComponent.propTypes = {
-	tableData: propTypes.array.isRequired
+	tableData: propTypes.array.isRequired,
+	handleUnitChange: propTypes.func.isRequired
 };

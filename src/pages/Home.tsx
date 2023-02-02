@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import TableComponent from '../components/TableComponent';
 import { TableDataInterface } from '../interfaces/TableData.interface';
+import TableComponent from '../components/Table/TableComponent';
 
 
 async function loadData(){
@@ -10,8 +10,22 @@ async function loadData(){
 }
 
 
-const Home: React.FC = () => {
+export default function Home() {
 	const [ data, setData ] = useState<TableDataInterface[]>();
+
+
+	const handleUnitChange = (value: number, id: string) => {
+		if(value < 0) return;
+
+		const newData = data?.map((item: TableDataInterface) => {
+			if (item.id === id) {
+				item.unitSelector = value;
+			}
+			return item;
+		});
+
+		setData(newData);
+	};
 
 	useEffect(() => {
 		loadData().then((data) => {
@@ -20,6 +34,8 @@ const Home: React.FC = () => {
 				const dateB = new Date(b.releaseDate);
 				return dateB.getTime() - dateA.getTime();
 			});
+
+			orderedData.map((item: TableDataInterface) => item.unitSelector = 0);
 
 			setData(orderedData);
 			console.log(orderedData);
@@ -31,12 +47,9 @@ const Home: React.FC = () => {
 			<h1> Sentisis Front-End Challenge by Héctor Matías González </h1>
 
 			{
-				data ? (<TableComponent tableData={data} />) : (<p>Loading...</p>)
+				data ? (<TableComponent tableData={data} handleUnitChange={handleUnitChange} /> ) : (<p>Loading...</p>)
 			}
-
-
 		</>
 	);
-};
+}
 
-export default Home;

@@ -1,14 +1,12 @@
 import React from 'react';
 import './App.css';
 import Home from './pages/Home';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-
+import { ThemeProvider, createTheme, makeStyles } from '@material-ui/core/styles';
 
 
 const theme = createTheme({
 	palette: {
 		primary: {
-			// blue
 			main: '#FDA47B',
 			contrastText: '#ffffff',
 		},
@@ -20,11 +18,21 @@ const theme = createTheme({
 	}
 });
 
+const useStyles = makeStyles((theme) => ({
+	root: {
+		fontFamily: 'helvetica',
+	},
+}));
+
 
 function App() {
+	const classes = useStyles();
+
 	return (
 		<ThemeProvider theme={theme}>
-			<Home />
+			<div className={classes.root}>
+				<Home />
+			</div>
 		</ThemeProvider>
 	);
 }

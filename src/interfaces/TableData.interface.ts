@@ -5,5 +5,6 @@ export interface TableDataInterface {
     releaseDate: number;
     description: string;
     price: number;
+    unitSelector?: number;
     currency: string;
 }

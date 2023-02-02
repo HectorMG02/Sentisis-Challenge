@@ -22,7 +22,12 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-testing-library": "^8.0.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "@fortawesome/fontawesome-common-types": "^6.1.0",
+    "@fortawesome/fontawesome-svg-core": "^6.1.0",
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.0.0",
+    "@fortawesome/react-fontawesome": "^0.1.19"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",

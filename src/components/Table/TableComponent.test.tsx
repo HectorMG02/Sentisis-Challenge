@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TableComponent from './TableComponent';
-import { TableDataInterface } from '../interfaces/TableData.interface';
-import { dateToDDMMYYYY } from '../common/dateParser';
+import TableComponent from '../Table/TableComponent';
+import { TableDataInterface } from '../../interfaces/TableData.interface';
+import { dateToDDMMYYYY } from '../../common/dateParser';
 
 const tableData: TableDataInterface[] = [
 	{
