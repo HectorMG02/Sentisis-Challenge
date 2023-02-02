@@ -7,6 +7,7 @@ import * as dataActions from '../redux/actions/data.actions';
 import CartButton from '../components/CartButton';
 import ProductDataModalComponent from '../components/Modal/ProductDataModalComponent';
 import SummaryModalComponent from '../components/Modal/SummaryModalComponent';
+import { Box, LinearProgress } from '@mui/material';
 
 async function getData(){
 	const url = 'https://my-json-server.typicode.com/davidan90/demo/tickets';
@@ -97,7 +98,13 @@ export default function Home() {
 			}
 
 			{
-				data ? (<TableComponent tableData={data} handleUnitChange={handleUnitChange} selectDataFunction={selectData} /> ) : (<p>Loading...</p>)
+				data ? (<TableComponent tableData={data} handleUnitChange={handleUnitChange} selectDataFunction={selectData} /> ) : (
+					<Box sx={{ width: '100%' }}>
+						<LinearProgress
+							color="warning"
+						/>
+				  </Box>
+				  )
 			}
 
 			{

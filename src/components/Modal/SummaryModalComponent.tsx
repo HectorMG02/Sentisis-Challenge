@@ -22,12 +22,9 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 						{
 							data.map((item: TableDataInterface) => {
 								return (
-									<Fragment key={item.id}>
-										<ListItem>
-											<ListItemText primary={capitalize(item.title)} secondary={`Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})`} />
-										</ListItem>
-										<hr />
-									</Fragment>
+									<ListItem key={item.id}>
+										<ListItemText primary={capitalize(item.title)} secondary={<>Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})`<hr /></>} />
+									</ListItem>
 								);
 							})
 						}
