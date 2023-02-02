@@ -10,9 +10,9 @@ Create app with React and Typescript to:
 
         (ok) 2- The table is sorted by release date (most recent first).
 
-        3- The unit selector must be a number type input. The button + (add object) must be on the left side of the selector, and the button - (remove object), on the right side.
+        (ok) 3- The unit selector must be a number type input. The button + (add object) must be on the left side of the selector, and the button - (remove object), on the right side.
 
-        4- When hitting the unit selector buttons, the number of objects should get updated.
+        (ok) 4- When hitting the unit selector buttons, the number of objects should get updated.
 
         5- When refreshing, the data are retained (the number of objects ordered is not reset).
 
