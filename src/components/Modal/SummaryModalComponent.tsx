@@ -23,7 +23,7 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 							data.map((item: TableDataInterface) => {
 								return (
 									<ListItem key={item.id}>
-										<ListItemText primary={capitalize(item.title)} secondary={<>Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})`<hr /></>} />
+										<ListItemText primary={capitalize(item.title)} secondary={<>Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})<hr /></>} />
 									</ListItem>
 								);
 							})
