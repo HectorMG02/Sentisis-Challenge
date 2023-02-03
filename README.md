@@ -28,8 +28,8 @@ You can run the linter with the following command
 npm run lint
 ```
 For the visual part of the project, I used the MaterialUI library and modified some styles to use the colors from your [website] (https://www.sentisis.com/).
-- Primary color: <p style="color:#FDA47B"> #FDA47B </p>
-- SecondaryColor: <p style="color:#D9B5F6"> #D9B5F6 </p>
+- Primary color: <p style="background:#FDA47B"> #FDA47B </p>
+- SecondaryColor: <p style="background:#D9B5F6"> #D9B5F6 </p>
 
 To store the quantities, I decided to use Redux with persistor, even though lighter solutions such as context or even localStorage could have been used, I chose Redux since it was one of the requirements in the job offer.
 
