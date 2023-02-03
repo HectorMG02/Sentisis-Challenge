@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -117,13 +117,35 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,7 +178,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,16 +189,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Dialog, DialogTitle, DialogContent, DialogContentText, List, ListItem, ListItemText, capitalize } from '@mui/material';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Dialog, DialogTitle, DialogContent, DialogContentText, List, ListItem, ListItemText, capitalize, styled } from '@mui/material';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
 import { getCurrencyFormat } from '../../common/getCurrencyFormat';
-import { Fragment } from 'react';
 import { moneyParser } from '../../common/moneyParser';
 &nbsp;
-const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, handleClose: () =&gt; void, data: TableDataInterface[]}) =&gt; {
+const StyledSpan = styled('span')({
+	fontWeight: 'bold',
+});
+&nbsp;
+type Props = {
+	open: boolean,
+	handleClose: () =&gt; void,
+	data: TableDataInterface[]
+}
+&nbsp;
+const SummaryModalComponent: React.FC&lt;Props&gt; = ({ open, handleClose, data}) =&gt; {
+	const totalMoney = moneyParser(data.reduce((acc: number, item: TableDataInterface) =&gt; {
+		return acc + (item.quantity * item.price);
+	}, 0));
+&nbsp;
 	return (
 		&lt;Dialog
 			onClose={handleClose}
@@ -196,23 +227,18 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 							data.map((item: TableDataInterface) =&gt; {
 								return (
 									&lt;ListItem key={item.id}&gt;
-										&lt;ListItemText primary={capitalize(item.title)} secondary={&lt;&gt;Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})&lt;hr /&gt;&lt;/&gt;} /&gt;
+										&lt;ListItemText primary={capitalize(item.title)} secondary={&lt;&gt;Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)}&lt;/&gt;} /&gt;
 									&lt;/ListItem&gt;
 								);
 							})
 						}
 &nbsp;
 						&lt;ListItem&gt;
-							&lt;ListItemText primary={&lt;span style={{
-								fontWeight: 'bold',
-							}}&gt;Total&lt;/span&gt;} secondary={&lt;span style={{
-								fontWeight: 'bold',
-							}}&gt;
-								{
-									moneyParser(data.reduce((acc: number, item: TableDataInterface) =&gt; {
-										return acc + (item.quantity * item.price);
-									}, 0))
-								}{getCurrencyFormat(data[0].currency)}&lt;/span&gt;}
+							&lt;ListItemText primary={&lt;StyledSpan&gt;Total&lt;/StyledSpan&gt;} secondary={
+								&lt;StyledSpan&gt;
+									{`${totalMoney}${getCurrencyFormat(data[0].currency)}`}
+								&lt;/StyledSpan&gt;
+							}
 							/&gt;
 						&lt;/ListItem&gt;
 					&lt;/List&gt;
@@ -225,14 +251,15 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 };
 &nbsp;
 &nbsp;
-export default SummaryModalComponent;</pre></td></tr></table></pre>
+export default SummaryModalComponent;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-03T07:10:30.151Z
+                at 2023-02-03T08:17:27.792Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

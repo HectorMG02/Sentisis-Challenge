@@ -1,51 +1,76 @@
-# Sentisis Frontend Challenge
+# Sentisis Front-End Challenge by Héctor Matías González
 
-Create app with React and Typescript to:
+## 🚀 Project initialization
+To initialize the project, follow these steps:
+ 
+```
+1. Clone the repository
+2. Install the dependencies with **npm install**
+3. Run the project with **npm run dev**
+```
 
-(ok) - Show a table with a list of objects (tickets/events).
+## 📦 Project structure
 
-  **Acceptance criteria**:
+The project is divided into the following folders:
+- **pages**: Contains the Home Page of the application.
+- **components**: Contains the components of the application.
+- **redux**: Contains the redux configuration of the application.
+- **interfaces**: Contains the interfaces of the application.
+- **cypress**: Contains the cypress e2e tests of the application.
+- **common**: Contains the common functions of the application.
 
-        (ok) 1- The table has 5 columns: name, type, release date, unit selector and price.
+## 📝 Notes
+To create the project I have decided to use **vite** instead of **create-react-app** since it is faster and lighter.
 
-        (ok) 2- The table is sorted by release date (most recent first).
+Regarding development, the first thing I have done has been to configure the linter. I have used eslint for this project to keep the code clean and tidy.
+You can run the linter with the following command
+```
+npm run lint
+```
+For the visual part of the project, I used the MaterialUI library and modified some styles to use the colors from your [website] (https://www.sentisis.com/).
+- Primary color: <p style="color:#FDA47B"> #FDA47B </p>
+- SecondaryColor: <p style="color:#D9B5F6"> #D9B5F6 </p>
 
-        (ok) 3- The unit selector must be a number type input. The button + (add object) must be on the left side of the selector, and the button - (remove object), on the right side.
+To store the quantities, I decided to use Redux with persistor, even though lighter solutions such as context or even localStorage could have been used, I chose Redux since it was one of the requirements in the job offer.
 
-        (ok) 4- When hitting the unit selector buttons, the number of objects should get updated.
+When loading the data, we check if saved data exists, and if it does, we load it. Otherwise, we load the data from the API.
 
-        (ok) 5- When refreshing, the data are retained (the number of objects ordered is not reset).
+As for testing, I used the react-testing library along with vitest (since vitest is faster than jest) for unit testing, and cypress for end-to-end testing.
+There is only one end-to-end test, which tests the general interface shown in the Home component. For unit tests, I created a test for each component and each element in Redux.
+Here are the test results:
 
-(ok) - Show a modal window when clicking each object row.
 
-  **Acceptance criteria**:
+## 🧪 Coverage summary
+```
+- Statements   : 96.66% ( 116/120 )
+- Branches     : 88.23% ( 44/50 )
+- Functions    : 96.15% ( 46/48 )
+- Lines        : 96.22% ( 113/117 )
+```
 
-        (ok) 1- The modal window shows the name, type and description.
-
-        (ok) 2- Besides the information, it must have an "Add" button, so that when clicking it, the modal closes and the unit selector of the list is increased in 1 unit.
-
- (ok) - When there is at least one unit of an object, a button "Cart" must be shown under the list.
-
-  **Acceptance criteria**:
-
-        (ok) 1- Show another modal window with the summary of the objects ordered.
-
-        (ok) 2- The summary must contain a list with the object name, number of units and total price.
-
-        (ok) 3- The list is sorted from highest to lowest unit number.
-
-        (ok) 4- The total price must be shown at the end of the list.
-
-        (ok) 5- To exit the modal, it is necessary to click outside the modal.
-
-(ok) - Finally: Add some unit tests and e2e tests to validate the whole process.
-
-> This is the data [endpoint](https://my-json-server.typicode.com/davidan90/demo/tickets).
->
-> React is the only mandatory library needed.
->
-> Add a README explaining the decisions made and how to run the project.
->
-> There is no specific design, feel free to style the app as you want (using css or sass).
->
-> Return it at your convenience, we appreciate your time.
+```
+File                            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------------|---------|----------|---------|---------|-------------------
+All files                       |   96.66 |    88.23 |   96.15 |   96.22 |                   
+ common                         |     100 |      100 |     100 |     100 |                   
+  capitalize.ts                 |     100 |      100 |     100 |     100 |                   
+  dateParser.ts                 |     100 |      100 |     100 |     100 |                   
+  getCurrencyFormat.ts          |     100 |      100 |     100 |     100 |                   
+  moneyParser.ts                |     100 |      100 |     100 |     100 |                   
+ components/CartButton          |     100 |      100 |     100 |     100 |                   
+  CartButton.tsx                |     100 |      100 |     100 |     100 |                   
+ components/Loading             |     100 |      100 |     100 |     100 |                   
+  SpinnerComponent.tsx          |     100 |      100 |     100 |     100 |                   
+ components/Modal               |     100 |      100 |     100 |     100 |                   
+  ProductDataModalComponent.tsx |     100 |      100 |     100 |     100 |                   
+  SummaryModalComponent.tsx     |     100 |      100 |     100 |     100 |                   
+ components/Table               |   93.33 |      100 |   88.88 |   91.66 |                   
+  TableComponent.tsx            |    87.5 |      100 |      80 |   83.33 | 86                
+  UnitSelector.tsx              |     100 |      100 |     100 |     100 |                   
+ redux/actions                  |     100 |      100 |     100 |     100 |                   
+  data.actions.ts               |     100 |      100 |     100 |     100 |                   
+ redux/reducers                 |      80 |    33.33 |     100 |      80 |                   
+  data.reducer.ts               |      80 |    33.33 |     100 |      80 | 16                
+ redux/types                    |     100 |      100 |     100 |     100 |                   
+  index.ts                      |     100 |      100 |     100 |     100 |                   
+```
