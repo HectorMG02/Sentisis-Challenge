@@ -36,7 +36,12 @@ const SummaryModalComponent: React.FC<Props> = ({ open, handleClose, data}) => {
 							data.map((item: TableDataInterface) => {
 								return (
 									<ListItem key={item.id}>
-										<ListItemText primary={capitalize(item.title)} secondary={<>Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)}</>} />
+										<ListItemText primary={capitalize(item.title)} secondary={
+											<>
+												<StyledSpan>Units: </StyledSpan>
+												{item.quantity} (x{item.price}{getCurrencyFormat(item.currency)})
+											</>
+										} />
 									</ListItem>
 								);
 							})
