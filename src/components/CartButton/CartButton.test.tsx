@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { vi } from 'vitest';
-import CartButton from './CartButton';
+import CartButton from '../CartButton/CartButton';
 import '@testing-library/jest-dom';
 
 describe('CartButton tests', () => {

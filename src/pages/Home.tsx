@@ -4,10 +4,11 @@ import TableComponent from '../components/Table/TableComponent';
 import { RootState } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import * as dataActions from '../redux/actions/data.actions';
-import CartButton from '../components/CartButton';
+import CartButton from '../components/CartButton/CartButton';
 import ProductDataModalComponent from '../components/Modal/ProductDataModalComponent';
 import SummaryModalComponent from '../components/Modal/SummaryModalComponent';
 import { Box, LinearProgress } from '@mui/material';
+import SpinnerComponent from '../components/Loading/SpinnerComponent';
 
 async function getData(){
 	const url = 'https://my-json-server.typicode.com/davidan90/demo/tickets';
@@ -61,7 +62,9 @@ export default function Home() {
 	};
 
 	const getProductsSelected = () => {
-		const productsSelected = data?.filter((item: TableDataInterface) => item?.quantity > 0) || [];
+		const productsSelected = data?.filter((item: TableDataInterface) => item?.quantity > 0);
+		if(!productsSelected) return [];
+
 		return productsSelected?.sort((a: TableDataInterface, b: TableDataInterface) => b.quantity - a.quantity);
 	};
 
@@ -74,6 +77,7 @@ export default function Home() {
 			const orderedData = data.sort((a: any, b: any) => {
 				const dateA = new Date(a.releaseDate);
 				const dateB = new Date(b.releaseDate);
+
 				return dateB.getTime() - dateA.getTime();
 			});
 
@@ -98,13 +102,7 @@ export default function Home() {
 			}
 
 			{
-				data ? (<TableComponent tableData={data} handleUnitChange={handleUnitChange} selectDataFunction={selectData} /> ) : (
-					<Box sx={{ width: '100%' }}>
-						<LinearProgress
-							color="warning"
-						/>
-				  </Box>
-				  )
+				data ? (<TableComponent tableData={data} handleUnitChange={handleUnitChange} selectDataFunction={selectData} /> ) : (<SpinnerComponent />)
 			}
 
 			{

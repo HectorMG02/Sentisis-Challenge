@@ -25,7 +25,6 @@ describe('data.reducer tests', () => {
 			type: SAVE_DATA,
 			payload: tableData
 		})).toEqual({
-			...initialState,
 			data: tableData
 		});
 	});

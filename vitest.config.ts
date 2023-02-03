@@ -7,6 +7,9 @@ export default defineConfig({
 	test: {
 		globals: true,
 		environment: 'happy-dom',
+		coverage: {
+			provider: 'istanbul' // or 'c8'
+		  },
 	},
 	resolve: {
 		alias: {
