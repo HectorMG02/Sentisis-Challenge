@@ -87,7 +87,7 @@ const Home = () => {
 
 	return (
 		<>
-			<h1> Sentisis Front-End Challenge by Héctor Matías González </h1>
+			<h1> Séntisis Front-End Challenge by Héctor Matías González </h1>
 			{
 				productSelected && (<ProductDataModalComponent open={openProductInfoModal} handleClose={() => setOpenProductInfoModal(false)} handleSelectModalUnit={handleSelectModalUnit} data={productSelected} />)
 			}

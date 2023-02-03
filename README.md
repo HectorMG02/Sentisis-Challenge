@@ -1,4 +1,4 @@
-# Sentisis Front-End Challenge by Héctor Matías González
+# Séntisis Front-End Challenge by Héctor Matías González
 
 ## 🚀 Project initialization
 To initialize the project, follow these steps:
