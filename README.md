@@ -5,8 +5,8 @@ To initialize the project, follow these steps:
  
 ```
 1. Clone the repository
-2. Install the dependencies with **npm install**
-3. Run the project with **npm run dev**
+2. Install the dependencies with npm install
+3. Run the project with npm run dev
 ```
 
 ## 📦 Project structure
