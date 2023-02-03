@@ -17,7 +17,7 @@ async function getData(){
 
 
 const Home = () => {
-	const dispatch = useDispatch();
+	const dispatch: any = useDispatch();
 	const [data, setData] = useState<TableDataInterface[]>();
 	const [productSelected, setProductSelected] = useState<TableDataInterface>();
 	const [openProductInfoModal, setOpenProductInfoModal] = useState<boolean>(false);
@@ -33,12 +33,12 @@ const Home = () => {
 	const handleUnitChange = (value: number, id: string) => {
 		if(value < 0) return;
 
-		const newData = data?.map((item: TableDataInterface) => {
+		const newData: TableDataInterface[] = data?.map((item: TableDataInterface) => {
 			if (item.id === id) {
 				item.quantity = value;
 			}
 			return item;
-		});
+		}) || [];
 
 		setData(newData);
 		dispatch(dataActions.saveData(newData));
