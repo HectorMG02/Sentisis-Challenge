@@ -9,7 +9,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { dateToDDMMYYYY } from '../../common/dateParser';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
-import propTypes from 'prop-types';
 import UnitSelector from './UnitSelector';
 import { Button, capitalize } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -35,8 +34,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 	},
 }));
 
+type Props = {
+	tableData: TableDataInterface[],
+	handleUnitChange: (value: number, id: string) => void,
+	selectDataFunction: (id: string) => void
+}
 
-export default function TableComponent({ tableData, handleUnitChange, selectDataFunction }: { tableData: TableDataInterface[], handleUnitChange: (value: number, id: string) => void, selectDataFunction: (id: string) => void }) {
+const TableComponent: React.FC<Props> = ({ tableData, handleUnitChange, selectDataFunction }) => {
 	return (
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -69,7 +73,7 @@ export default function TableComponent({ tableData, handleUnitChange, selectData
 									<UnitSelector value={quantity || 0} handleUnitChange={handleUnitChange} cellId={id} />
 								</StyledTableCell>
 								<StyledTableCell align="left">{ price }{getCurrencyFormat(currency)}</StyledTableCell>
-								<StyledTableCell align="left">
+								<StyledTableCell align="center">
 									<Button
 										variant="contained"
 										color='primary'
@@ -89,9 +93,8 @@ export default function TableComponent({ tableData, handleUnitChange, selectData
 			</Table>
 		</TableContainer>
 	);
-}
-
-TableComponent.propTypes = {
-	tableData: propTypes.array.isRequired,
-	handleUnitChange: propTypes.func.isRequired
 };
+
+
+
+export default TableComponent;

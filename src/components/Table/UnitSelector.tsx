@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import propTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -23,8 +22,14 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
+type Props = {
+	value: number,
+	handleUnitChange: (value: number, id: string) => void,
+	cellId: string
+}
 
-function UnitSelector({ value, handleUnitChange, cellId } : { value: number, handleUnitChange: (value: number, id: string) => void, cellId: string }) {
+
+const UnitSelector: React.FC<Props> = ({ value, handleUnitChange, cellId }) => {
 	const classes = useStyles();
 
 	return (
@@ -64,12 +69,6 @@ function UnitSelector({ value, handleUnitChange, cellId } : { value: number, han
 			</Grid>
 		</div>
 	);
-}
+};
 
 export default UnitSelector;
-
-UnitSelector.propTypes = {
-	value: propTypes.number.isRequired,
-	handleUnitChange: propTypes.func.isRequired,
-	cellId: propTypes.string.isRequired
-};

@@ -1,7 +1,12 @@
 import React from 'react';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { Button } from '@mui/material';
-const CartButton = ({ onClick }: { onClick: () => void}) => {
+
+type Props = {
+	onClick: () => void
+}
+
+const CartButton: React.FC<Props> = ({ onClick }) => {
 	return (
 		<>
 			<Button

@@ -1,10 +1,23 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, List, ListItem, ListItemText, capitalize } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, List, ListItem, ListItemText, capitalize, styled } from '@mui/material';
 import { TableDataInterface } from '../../interfaces/TableData.interface';
 import { getCurrencyFormat } from '../../common/getCurrencyFormat';
-import { Fragment } from 'react';
 import { moneyParser } from '../../common/moneyParser';
 
-const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, handleClose: () => void, data: TableDataInterface[]}) => {
+const StyledSpan = styled('span')({
+	fontWeight: 'bold',
+});
+
+type Props = {
+	open: boolean,
+	handleClose: () => void,
+	data: TableDataInterface[]
+}
+
+const SummaryModalComponent: React.FC<Props> = ({ open, handleClose, data}) => {
+	const totalMoney = moneyParser(data.reduce((acc: number, item: TableDataInterface) => {
+		return acc + (item.quantity * item.price);
+	}, 0));
+
 	return (
 		<Dialog
 			onClose={handleClose}
@@ -23,23 +36,18 @@ const SummaryModalComponent = ({ open, handleClose, data}: { open: boolean, hand
 							data.map((item: TableDataInterface) => {
 								return (
 									<ListItem key={item.id}>
-										<ListItemText primary={capitalize(item.title)} secondary={<>Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)})<hr /></>} />
+										<ListItemText primary={capitalize(item.title)} secondary={<>Units: ${item.quantity} (x${item.price}${getCurrencyFormat(item.currency)}</>} />
 									</ListItem>
 								);
 							})
 						}
 
 						<ListItem>
-							<ListItemText primary={<span style={{
-								fontWeight: 'bold',
-							}}>Total</span>} secondary={<span style={{
-								fontWeight: 'bold',
-							}}>
-								{
-									moneyParser(data.reduce((acc: number, item: TableDataInterface) => {
-										return acc + (item.quantity * item.price);
-									}, 0))
-								}{getCurrencyFormat(data[0].currency)}</span>}
+							<ListItemText primary={<StyledSpan>Total</StyledSpan>} secondary={
+								<StyledSpan>
+									{`${totalMoney}${getCurrencyFormat(data[0].currency)}`}
+								</StyledSpan>
+							}
 							/>
 						</ListItem>
 					</List>

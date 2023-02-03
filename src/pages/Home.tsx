@@ -7,7 +7,6 @@ import * as dataActions from '../redux/actions/data.actions';
 import CartButton from '../components/CartButton/CartButton';
 import ProductDataModalComponent from '../components/Modal/ProductDataModalComponent';
 import SummaryModalComponent from '../components/Modal/SummaryModalComponent';
-import { Box, LinearProgress } from '@mui/material';
 import SpinnerComponent from '../components/Loading/SpinnerComponent';
 
 async function getData(){
@@ -17,7 +16,7 @@ async function getData(){
 }
 
 
-export default function Home() {
+const Home = () => {
 	const dispatch = useDispatch();
 	const [data, setData] = useState<TableDataInterface[]>();
 	const [productSelected, setProductSelected] = useState<TableDataInterface>();
@@ -113,4 +112,7 @@ export default function Home() {
 
 		</>
 	);
-}
+};
+
+
+export default Home;

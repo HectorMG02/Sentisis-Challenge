@@ -3,8 +3,14 @@ import { TableDataInterface } from '../../interfaces/TableData.interface';
 import { Badge, Button, Dialog, DialogContent, DialogContentText, DialogTitle, capitalize } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalUnit}: { open: boolean, handleClose: () => void, data: TableDataInterface, handleSelectModalUnit: (id: string) => void}) => {
+type Props = {
+	open: boolean,
+	handleClose: () => void,
+	data: TableDataInterface,
+	handleSelectModalUnit: (id: string) => void
+}
 
+const ProductDataModalComponent: React.FC<Props> = ({ open, handleClose, data, handleSelectModalUnit}) => {
 	return (
 		<Dialog
 			onClose={handleClose}
@@ -31,7 +37,7 @@ const ProductDataModalComponent = ({ open, handleClose, data, handleSelectModalU
 					badgeContent={capitalize(data.type)}
 					color="success"
 					sx={{
-						ml: 2,
+						ml: 3.5,
 					}}
 				/>
 			</DialogTitle>
