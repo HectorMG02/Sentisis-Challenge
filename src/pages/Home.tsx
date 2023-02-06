@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { TableDataInterface } from '../interfaces/TableData.interface';
 import TableComponent from '../components/Table/TableComponent';
 import { RootState } from '../redux/store';
@@ -30,42 +30,54 @@ const Home = () => {
 		setData(savedData.length ? savedData : data);
 	};
 
-	const handleUnitChange = (value: number, id: string) => {
-		if(value < 0) return;
+	const handleUnitChange = useCallback(
+		(value: number, id: string) => {
+		  if (value < 0) return;
 
-		const newData: TableDataInterface[] = data?.map((item: TableDataInterface) => {
-			if (item.id === id) {
-				item.quantity = value;
-			}
-			return item;
-		}) || [];
+		  const newData: TableDataInterface[] = data?.map((item: TableDataInterface) => {
+				if (item.id === id) {
+			  item.quantity = value;
+				}
+				return item;
+		  }) || [];
 
-		setData(newData);
-		dispatch(dataActions.saveData(newData));
-	};
+		  setData(newData);
+		  dispatch(dataActions.saveData(newData));
+		},
+		[data, setData, dispatch]
+	  );
 
-	const selectData = (id: string) => {
-		const product: TableDataInterface | undefined = data?.find((item: TableDataInterface) => item.id === id);
-		setProductSelected(product);
-		setOpenProductInfoModal(true);
-	};
+	const selectData = useCallback(
+		(id: string) => {
+		  const product: TableDataInterface | undefined = data?.find((item: TableDataInterface) => item.id === id);
+		  setProductSelected(product);
+		  setOpenProductInfoModal(true);
+		},
+		[data, setProductSelected, setOpenProductInfoModal]
+	  );
 
-	const handleSelectModalUnit = (id: string) => {
-		const product: TableDataInterface | undefined = data?.find((item: TableDataInterface) => item.id === id);
+	  const handleSelectModalUnit = useCallback(
+		(id: string) => {
+		  const product: TableDataInterface | undefined = data?.find((item: TableDataInterface) => item.id === id);
 
-		if(product){
-			const quantity: number = product?.quantity || 0;
-			handleUnitChange(quantity + 1, id);
-			setOpenProductInfoModal(false);
-		}
-	};
+		  if (product) {
+				const quantity: number = product?.quantity || 0;
+				handleUnitChange(quantity + 1, id);
+				setOpenProductInfoModal(false);
+		  }
+		},
+		[data, handleUnitChange, setOpenProductInfoModal]
+	  );
 
-	const getProductsSelected = () => {
-		const productsSelected = data?.filter((item: TableDataInterface) => item?.quantity > 0);
-		if(!productsSelected) return [];
+	  const getProductsSelected = useCallback(
+		() => {
+		  const productsSelected = data?.filter((item: TableDataInterface) => item?.quantity > 0);
+		  if (!productsSelected) return [];
 
-		return productsSelected?.sort((a: TableDataInterface, b: TableDataInterface) => b.quantity - a.quantity);
-	};
+		  return productsSelected?.sort((a: TableDataInterface, b: TableDataInterface) => b.quantity - a.quantity);
+		},
+		[data]
+	  );
 
 	const handleOpenSummaryModal = () => {
 		setOpenSummaryModal(true);

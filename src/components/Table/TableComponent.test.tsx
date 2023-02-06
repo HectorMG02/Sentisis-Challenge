@@ -15,6 +15,7 @@ const tableData: TableDataInterface[] = [
 		description: 'description1',
 		price: 1,
 		currency: 'currency1',
+		quantity: 0,
 	},
 	{
 		id: '2',
@@ -24,6 +25,7 @@ const tableData: TableDataInterface[] = [
 		description: 'description2',
 		price: 2,
 		currency: 'currency2',
+		quantity: 0,
 	},
 ];
 
